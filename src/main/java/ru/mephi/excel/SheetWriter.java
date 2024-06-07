@@ -12,7 +12,7 @@ import java.util.Map;
 public class SheetWriter {
     public static void write(Map<String, List<?>> allResults, List<String> labels, String filename) throws IOException {
         try (Workbook workbook = new XSSFWorkbook()) {
-            Sheet sheet = workbook.createSheet("Всё,кроме ковариации");
+            Sheet sheet = workbook.createSheet("Статистика без ковариации.");
             int rowNum = 1;
             writeListToSheet(sheet, "", 0, labels);
 
@@ -33,7 +33,6 @@ public class SheetWriter {
             String pathToDesktop = System.getProperty("user.home") + "/Desktop";
             File desktopDir = new File(pathToDesktop);
 
-            // Сохраняем документ
             try (FileOutputStream fileOut = new FileOutputStream(new File(pathToDesktop, filename + ".xlsx"))) {
                 workbook.write(fileOut);
             } catch (IOException e) {

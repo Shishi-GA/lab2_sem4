@@ -39,18 +39,17 @@ public class SheetReader {
     }
 
     public static List<String> getSheetNames(String filePath) throws IOException {
-        List<String> sheetNamesAndNumbers = new ArrayList<>();
+        List<String> sheetNames = new ArrayList<>();
 
         try (FileInputStream fis = new FileInputStream(filePath);
              XSSFWorkbook myExcelBook = new XSSFWorkbook(fis)) {
 
             int numberOfSheets = myExcelBook.getNumberOfSheets();
             for (int i = 0; i < numberOfSheets; i++) {
-                String sheetName = myExcelBook.getSheetName(i);
-                sheetNamesAndNumbers.add(sheetName +" (Лист " + " №" + (i + 1) + ")");
+                sheetNames.add(myExcelBook.getSheetName(i));
             }
         }
 
-        return sheetNamesAndNumbers;
+        return sheetNames;
     }
 }
